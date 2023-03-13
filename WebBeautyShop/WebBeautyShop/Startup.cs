@@ -11,7 +11,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebBeautyShop.Abstraction;
 using WebBeautyShop.Data;
+using WebBeautyShop.Domain;
+using WebBeautyShop.Infrastructure;
+using WebBeautyShop.Services;
 
 namespace WebBeautyShop
 {
@@ -28,14 +32,23 @@ namespace WebBeautyShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
+                options.UseLazyLoadingProxies()
+                .UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<ApplicationUser>()
+               .AddRoles<IdentityRole>()
+               .AddEntityFrameworkStores<ApplicationDbContext>()
+               .AddDefaultTokenProviders();
+            services.AddTransient<IProductService, ProductService>();
+
+            services.AddTransient<ICategoryService, CategoryService>();
+
+            services.AddTransient<IBrandService, BrandService>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
 
             services.Configure<IdentityOptions>(option =>
             {
@@ -51,6 +64,7 @@ namespace WebBeautyShop
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.PrepareDatabase();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

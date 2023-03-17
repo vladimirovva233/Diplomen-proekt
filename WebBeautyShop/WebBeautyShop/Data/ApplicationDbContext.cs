@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using WebBeautyShop.Domain;
 using WebBeautyShop.Models.Product;
+using WebBeautyShop.Models.Order;
 
 namespace WebBeautyShop.Data
 {
@@ -25,5 +26,7 @@ namespace WebBeautyShop.Data
         public DbSet<WebBeautyShop.Models.Product.ProductEditVM> ProductEditVM { get; set; }
         public DbSet<WebBeautyShop.Models.Product.ProductDetailsVM> ProductDetailsVM { get; set; }
         public DbSet<WebBeautyShop.Models.Product.ProductDeleteVM> ProductDeleteVM { get; set; }
+        public DbSet<WebBeautyShop.Models.Order.OrderConfirmVM> OrderConfirmVM { get; set; }
+        public DbSet<WebBeautyShop.Models.Order.OrderIndexVM> OrderIndexVM { get; set; }
     }
 }

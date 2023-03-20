@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using WebBeautyShop.Models.Order;
 
 namespace WebBeautyShop.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly ApplicationDbContext context;
@@ -20,6 +22,7 @@ namespace WebBeautyShop.Controllers
             this.context = context;
         }
        
+        [Authorize(Roles ="Administrator")]
         public ActionResult Index()
         {
             string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);

@@ -88,7 +88,7 @@ namespace WebBeautyShop.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { FirstName=Input.FirstName, LastName=Input.LastName,
-                                                 Adress=Input.Adress, UserName = Input.Email, Email = Input.Email };
+                                                 Adress=Input.Adress, UserName = Input.UserName, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

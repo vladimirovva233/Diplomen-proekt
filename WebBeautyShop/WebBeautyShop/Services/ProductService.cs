@@ -74,7 +74,7 @@ namespace WebBeautyShop.Services
             return _context.SaveChanges() != 0;
         }
 
-        public bool Update(int productId, string name, int brandId, int categiryId, string picture, int quantity, decimal price, decimal discount)
+        public bool Update(int productId, string name, int brandId, int categoryId, string picture, int quantity, decimal price, decimal discount)
         {
             var product = GetProductById(productId);
             if (product == default(Product))
@@ -83,8 +83,10 @@ namespace WebBeautyShop.Services
             }
             product.ProductName = name;
             product.Brand = _context.Brands.Find(brandId);
+            product.Category = _context.Categories.Find(categoryId);
             product.Picture = picture;
             product.Price = price;
+            product.Quantity = quantity;
             product.Discount = discount;
             _context.Update(product);
             return _context.SaveChanges() != 0;

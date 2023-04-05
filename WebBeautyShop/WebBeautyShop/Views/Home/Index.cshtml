@@ -3,6 +3,46 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">BeautyShop</h1>
+    <!--<img src="https://cdn.britannica.com/35/222035-050-C68AD682/makeup-cosmetics.jpg" style="height:300px"> qtyatyq r   q-->
+    @*https://dailytimes.com.pk/assets/uploads/2022/10/18/AdobeStock_273553300.jpeg*@
+
+
+
+
+
+
 </div>
+<div class="text-right"> beauty shop is .........</div>
+    
+    @*Sample Slideshow*@
+    <div id="slideshow">
+        <img src="https://images.indianexpress.com/2020/03/makeup-de-clutter-1200.jpg" style="height:300px" alt="1" />
+        <img src="https://post.healthline.com/wp-content/uploads/2020/04/makeup_composition_overhead-1200x628-facebook-1200x628.jpg" style="height:300px" alt="2" />
+        <img src="https://images.herzindagi.info/image/2022/Oct/cheap-makeup-product.jpg" style="height:300px" alt="3" />
+    </div>
+    <script>
+        var slideShow = function (container) {
+            this.images = [];
+            this.curImage = 0;
+            for (i = 0; i < container.childElementCount; i++) {
+                this.images.push(container.children[i]);
+                this.images[i].style.display = "none";
+            }
+
+            // Handle going to to the next slide
+            var nextSlide = function () {
+                for (var i = 0; i < this.images.length; i++) {
+                    this.images[i].style.display = "none";
+                }
+                this.images[this.curImage].style.display = "block";
+                this.curImage++;
+                if (this.curImage >= this.images.length) {
+                    this.curImage = 0;
+                }
+                window.setTimeout(nextSlide.bind(this), 2000);
+            };
+            nextSlide.call(this);
+        };
+        slideShow(document.getElementById("slideshow"));
+    </script>

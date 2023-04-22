@@ -45,7 +45,7 @@ namespace WebBeautyShop.Infrastructure
                new Category{CategoryName="HIGHLIGHTER"},
                new Category{CategoryName="BLUSH"},
                new Category{CategoryName="CONTOUR"},
-               new Category{CategoryName="FOUNFATION"},
+               new Category{CategoryName="FOUNDATION"},
                new Category{CategoryName="PALLETES"}
            });
             dataCategory.SaveChanges();
